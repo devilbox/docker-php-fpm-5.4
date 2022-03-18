@@ -159,6 +159,7 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
 	case "${UNAME_MACHINE_ARCH}" in
 		# ADDED CHANGE
 	    aarch64eb) machine=aarch64_be-unknown ;;
+	    aarch64) machine=aarch64-unknown ;;
 		# END OF ADDED CHANGE
 	    armeb) machine=armeb-unknown ;;
 	    arm*) machine=arm-unknown ;;
@@ -846,10 +847,10 @@ EOF
 
 	# ADDED CHANGE
     aarch64:Linux:*:*)
-    echo $UNAME_MACHINE-unknown-linux-$LIBC
+    echo $UNAME_MACHINE-unknown-linux-gnu
 	exit ;;
     aarch64_be:Linux:*:*)
-	echo aarch64_be-unknown-linux-$LIBC
+	echo aarch64_be-unknown-linux-gnu
 	exit ;;
     arm64:Darwin:*:*)
     echo aarch64-apple-darwin$UNAME_RELEASE
