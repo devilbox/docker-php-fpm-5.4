@@ -62,7 +62,25 @@ RUN set -eux \
 
 ENV PHP_VERSION 5.4.45
 COPY data/docker-php-source /usr/local/bin/
-COPY data/php-${PHP_VERSION}.tar.xz /usr/src/php.tar.xz
+COPY data/php/php-${PHP_VERSION}.tar.xz /usr/src/php.tar.xz
+COPY data/php/config.guess.patched /usr/src/config.guess
+
+
+###
+### Patch PHP
+###
+RUN set -exu \
+# Extract PHP
+	&& mkdir -p /usr/src/php \
+	&& tar -Jxf /usr/src/php.tar.xz -C "/usr/src/php" --strip-components=1 \
+# Patch config.guess
+	&& mv -f /usr/src/config.guess /usr/src/php/config.guess \
+# Remove old tar.xz
+	&& rm /usr/src/php.tar.xz \
+# Create php.tar.xz
+	&& cd /usr/src \
+	&& tar -cJf php.tar.xz php
+
 
 RUN set -eux \
 	&& buildDeps=" \
