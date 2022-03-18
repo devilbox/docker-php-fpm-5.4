@@ -11,9 +11,9 @@
 [![](https://images.microbadger.com/badges/image/devilbox/php-fpm-5.4.svg)](https://microbadger.com/images/devilbox/php-fpm-5.4 "php-fpm-5.4")
 [![License](https://img.shields.io/badge/license-MIT-%233DA639.svg)](https://opensource.org/licenses/MIT)
 
-**Available Architectures:**  `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x`, `mips64le`
+**Available Architectures:**  `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`
 
-This repository will provide you a fully functional PHP-FPM 5.4 Docker image built from [official sources](http://php.net) nightly. PHP 5.4 [reached EOL](http://php.net/eol.php) on 3 Sep 2015. It provides the base for [Devilbox PHP-FPM Docker images](https://github.com/devilbox/docker-php-fpm).
+This repository will provide you a fully functional PHP-FPM 5.4 Docker image built from [official sources](http://php.net) nightly. PHP 5.4 [reached EOL](http://php.net/eol.php) on 14 Sep 2015. It provides the base for [Devilbox PHP-FPM Docker images](https://github.com/devilbox/docker-php-fpm).
 
 | Docker Hub | Upstream Project |
 |------------|------------------|
@@ -151,7 +151,7 @@ echo "<?php echo 'hello world';" > htdocs/index.php
 
 #### 2. Start PHP container
 ```bash
-docker run -d --rm --name devilbox-php-fpm-5-3 \
+docker run -d --rm --name devilbox-php-fpm-5-4 \
   -v $(pwd)/htdocs:/var/www/default/htdocs devilbox/php-fpm-5.4
 ```
 
@@ -160,9 +160,9 @@ docker run -d --rm --name devilbox-php-fpm-5-3 \
 docker run -d --rm --name devilbox-nginx-stable \
   -v $(pwd)/htdocs:/var/www/default/htdocs \
   -e PHP_FPM_ENABLE=1 \
-  -e PHP_FPM_SERVER_ADDR=devilbox-php-fpm-5-3 \
+  -e PHP_FPM_SERVER_ADDR=devilbox-php-fpm-5-4 \
   -p 8080:80 \
-  --link devilbox-php-fpm-5-3 \
+  --link devilbox-php-fpm-5-4 \
   devilbox/nginx-stable
 ```
 
