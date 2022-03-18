@@ -115,7 +115,7 @@ RUN set -eux \
 	fi \
 	\
 	&& ./configure \
-		--build="${gnuArch}" \
+		--host="${gnuArch}" \
 		--with-config-file-path="$PHP_INI_DIR" \
 		--with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
 		--enable-fpm \
