@@ -103,12 +103,12 @@ ENV RUNTIME_TOOLS \
 #	&& mkdir -p "/usr/local/ssl/lib/${debMultiarch}" \
 #	&& ln -s /usr/local/ssl/lib/* "/usr/local/ssl/lib/${debMultiarch}/" \
 ## Remove Dependencies
-#	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false \
-#		${BUILD_TOOLS} \
 #	&& if [ "$(dpkg-architecture --query DEB_HOST_ARCH)" = "i386" ]; then \
 #		apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false \
 #			${BUILD_TOOLS_32}; \
 #	fi \
+#	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false \
+#		${BUILD_TOOLS} \
 #	&& apt-get clean \
 #	&& rm -rf /var/lib/apt/lists/*
 
@@ -200,13 +200,13 @@ RUN set -eux \
 	&& { find /usr/local/bin /usr/local/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
 	&& docker-php-source delete \
 # Remove Dependencies
-	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false \
-		${PHP_BUILD_DEPS} \
-		${BUILD_TOOLS} \
 	&& if [ "$(dpkg-architecture --query DEB_HOST_ARCH)" = "i386" ]; then \
 		apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false \
 			${BUILD_TOOLS_32}; \
 	fi \
+	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false \
+		${PHP_BUILD_DEPS} \
+		${BUILD_TOOLS} \
 # Install Run-time requirements
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
