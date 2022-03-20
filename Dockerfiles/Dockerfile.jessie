@@ -40,6 +40,8 @@ ENV PHP_RUNTIME_DEPS \
 
 ENV BUILD_TOOLS \
 	autoconf \
+	bison \
+	bisonc++ \
 	ca-certificates \
 	curl \
 	dpkg-dev \
@@ -168,6 +170,7 @@ RUN set -eux \
 		--disable-cgi \
 # --enable-ftp is included here because ftp_ssl_connect() needs ftp to be compiled statically (see https://github.com/docker-library/php/issues/236)
 		--enable-ftp \
+		--with-openssl-dir=/usr \
 		\
 # --enable-mbstring is included here because otherwise there's no way to get pecl to use it properly (see https://github.com/docker-library/php/issues/195)
 		--enable-mbstring \
