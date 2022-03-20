@@ -153,6 +153,8 @@ RUN set -eux \
 ###
 COPY data/docker-php-source /usr/local/bin/
 COPY data/php/php-${PHP_VERSION}.tar.xz /usr/src/php.tar.xz
+# Fix config.guess for PHP itself (adds 'aarch64' [arm64] architecture)
+# This file has been manually fixed
 COPY data/php/config.guess.patched /usr/src/config.guess
 
 
@@ -242,6 +244,10 @@ RUN set -eux \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
+# Fix config.guess for PHP modules (adds 'aarch64' [arm64] architecture)
+# The config.guess has been copied from PHP 5.5
+COPY data/php/usr-local-lib-php-build-config.guess /usr/local/lib/php/build/config.guess
+COPY data/php/usr-local-lib-php-build-config.sub /usr/local/lib/php/build/config.sub
 
 COPY data/docker-php-* /usr/local/bin/
 
