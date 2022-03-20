@@ -128,11 +128,13 @@ modules enabled by default visit: **[devilbox/docker-php-fpm](https://github.com
 | ereg         | ✔         |
 | fileinfo     | ✔         |
 | filter       | ✔         |
+| ftp          | ✔         |
 | hash         | ✔         |
 | iconv        | ✔         |
 | json         | ✔         |
 | libxml       | ✔         |
-| mysql        | ✔         |
+| mbstring     | ✔         |
+| mhash        | ✔         |
 | mysqlnd      | ✔         |
 | openssl      | ✔         |
 | pcre         | ✔         |
